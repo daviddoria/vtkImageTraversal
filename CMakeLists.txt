@@ -1,0 +1,10 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.4.5)
+
+PROJECT(vtkImageTraversal)
+
+FIND_PACKAGE(VTK REQUIRED)
+INCLUDE(${VTK_USE_FILE})
+
+ADD_EXECUTABLE(ImageTraversal vtkImageTraversal.cxx Example.cxx)
+TARGET_LINK_LIBRARIES(ImageTraversal vtkHybrid)
+
