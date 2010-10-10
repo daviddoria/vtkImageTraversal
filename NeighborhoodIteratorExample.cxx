@@ -2,7 +2,7 @@
 #include <vtkImageData.h>
 
 #include "vtkNeighborhoodIterator.h"
-#include "vtkSquareNeighborhood.h"
+#include "vtkRectangularNeighborhood.h"
 
 void GenerateData(vtkImageData*);
 
@@ -12,14 +12,22 @@ int main (int, char*[])
     vtkSmartPointer<vtkImageData>::New();
   GenerateData(image);
 
+  vtkRectangularNeighborhood neighborhood;
+  neighborhood.SetSize(3,3,1);
+  neighborhood.SetImage(image);
+
   vtkNeighborhoodIterator it;
   it.SetImage(image);
+  it.SetNeighborhood(&neighborhood);
 
   std::cout << "Reading data..." << std::endl;
   do
     {
-    unsigned char* pixel = static_cast<unsigned char*>(it.GetPixel());
-    std::cout << (int)(*pixel) << std::endl;
+    for(unsigned int i = 0; i < neighborhood.GetNumberOfPixels(); i++)
+      {
+      unsigned char* pixel = static_cast<unsigned char*>(neighborhood.GetPixel(i));
+      std::cout << (int)(*pixel) << std::endl;
+      }
     }while(it.NextPixel());
 
   return EXIT_SUCCESS;

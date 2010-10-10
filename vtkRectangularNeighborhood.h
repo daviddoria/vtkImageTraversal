@@ -23,10 +23,11 @@ public:
   void SetSize(int i, int j, int k);
   void SetSize(int s[3]);
 
-protected:
   // Description:
   // Get the pixel at (i,j,k) offset from the center of the rectangle.
-  void* GetPixel(int i, int j, int k);
+  void* GetPixelAtOffset(int i, int j, int k);
+  void* GetPixelAtOffset(int p[3]);
+protected:
 
   // Description:
   // The size of the rectangle.
