@@ -5,6 +5,16 @@ PROJECT(vtkImageTraversal)
 FIND_PACKAGE(VTK REQUIRED)
 INCLUDE(${VTK_USE_FILE})
 
-ADD_EXECUTABLE(ImageTraversal vtkImageTraversal.cxx Example.cxx)
-TARGET_LINK_LIBRARIES(ImageTraversal vtkHybrid)
+ADD_EXECUTABLE(PixelIteratorExample PixelIteratorExample.cxx
+vtkPixelIterator.cxx)
+TARGET_LINK_LIBRARIES(PixelIteratorExample vtkHybrid)
+
+ADD_EXECUTABLE(NeighborhoodIteratorExample NeighborhoodIteratorExample.cxx
+vtkPixelIterator.cxx
+vtkNeighborhoodIterator.cxx
+vtkNeighborhood.cxx
+vtkSquareNeighborhood.cxx
+vtkRectangularNeighborhood.cxx
+)
+TARGET_LINK_LIBRARIES(NeighborhoodIteratorExample vtkHybrid)
 
