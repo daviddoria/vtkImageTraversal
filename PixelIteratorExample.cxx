@@ -17,7 +17,7 @@ int main (int, char*[])
   std::cout << "Reading data..." << std::endl;
   do
     {
-    unsigned char* pixel = static_cast<unsigned char*>(it.GetPixel());
+    unsigned char* pixel = static_cast<unsigned char*>(it.GetCurrentPixelValue());
     std::cout << (int)(*pixel) << std::endl;
     }while(it.NextPixel());
 

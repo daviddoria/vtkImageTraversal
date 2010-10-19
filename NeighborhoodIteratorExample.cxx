@@ -1,5 +1,6 @@
 #include <vtkSmartPointer.h>
 #include <vtkImageData.h>
+#include <vtkVector.h>
 
 #include "vtkNeighborhoodIterator.h"
 #include "vtkRectangularNeighborhood.h"
@@ -14,18 +15,17 @@ int main (int, char*[])
 
   vtkRectangularNeighborhood neighborhood;
   neighborhood.SetSize(3,3,1);
-  neighborhood.SetImage(image);
 
   vtkNeighborhoodIterator it;
   it.SetImage(image);
-  it.SetNeighborhood(&neighborhood);
+  it.SetNeighborhood(neighborhood);
 
   std::cout << "Reading data..." << std::endl;
-  do
+  do // visit each pixel in the image
     {
-    for(unsigned int i = 0; i < neighborhood.GetNumberOfPixels(); i++)
+    for(unsigned int i = 0; i < it.GetNumberOfPixelsInNeighborhood(); i++) // visit all the neighbors of the current pixel
       {
-      unsigned char* pixel = static_cast<unsigned char*>(neighborhood.GetPixel(i));
+      unsigned char* pixel = static_cast<unsigned char*>(it.GetPixelValue(i));
       std::cout << (int)(*pixel) << std::endl;
       }
     }while(it.NextPixel());

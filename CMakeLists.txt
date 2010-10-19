@@ -15,6 +15,8 @@ vtkNeighborhoodIterator.cxx
 vtkNeighborhood.cxx
 vtkSquareNeighborhood.cxx
 vtkRectangularNeighborhood.cxx
+vtkPixelList.cxx
+
 )
 TARGET_LINK_LIBRARIES(NeighborhoodIteratorExample vtkHybrid)
 

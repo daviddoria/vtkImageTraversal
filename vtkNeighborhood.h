@@ -5,27 +5,34 @@
 #define __vtkNeighborhood_h
 
 class vtkImageData;
+class vtkVector3i;
 
 #include <vector>
+
+#include "vtkPixelList.h"
 
 class vtkNeighborhood
 {
 public:
-  // Description:
-  // Set the image that the neighborhood refers to.
-  void SetImage(vtkImageData* image);
+  vtkNeighborhood(){}
+  
 
   // Description:
-  // Get the number of pixels that the iterator contains.
+  // Get the number of pixels in the neighborhood.
   unsigned int GetNumberOfPixels();
 
   // Description:
-  // Get the ith pixel of the neighborhood.
-  void* GetPixel(int i);
+  // Get a pixel location.
+  vtkVector3i GetPixel(const int i);
+
+  // Description:
+  // Get the extent of the neighborhood.
+  vtkVector3i GetExtent(int extent[6]);
 
 protected:
-  std::vector<void*> Pixels;
-  vtkImageData* Image;
+
+  vtkPixelList Pixels;
+  
 };
 
 #endif
